@@ -69,15 +69,24 @@
 }
 
 .logo h2 {
-  color: #fff;
+  color: var(--text-main);
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.04em;
   margin: 0;
+}
+
+body:not(.light-mode) .logo h2 {
   background: linear-gradient(to right, #fff, var(--text-muted));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .logo h2 {
+  color: #111827;
+  background: none;
+  -webkit-text-fill-color: initial;
 }
 
 .nav-links {
