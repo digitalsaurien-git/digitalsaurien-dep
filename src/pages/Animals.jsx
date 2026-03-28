@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../store/AppContext';
 import { Plus, Search, Info, ShieldCheck, AlertCircle, ChevronRight, Home } from 'lucide-react';
 import { Snake } from '../components/icons/Snake' ;
+import { getPlaceholderImage } from '../utils/imageUtils';
 
 export function Animals() {
   const { animals, setAnimals } = useAppContext();
@@ -79,7 +80,7 @@ export function Animals() {
             >
               <div style={{ height: '160px', width: '100%', overflow: 'hidden', position: 'relative' }}>
                 <img 
-                  src={animal.photoUrl || `https://images.unsplash.com/photo-1549480017-d76466a4b7e8?auto=format&fit=crop&w=400&q=80&sig=${encodeURIComponent(animal.commonName || animal.scientificName || animal.id)}`} 
+                  src={animal.photoUrl || getPlaceholderImage(animal)} 
                   alt={animal.commonName} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} 
                   className="animal-card-img"

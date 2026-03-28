@@ -7,6 +7,7 @@ import {
   Scale, Shield, Truck, Printer
 } from 'lucide-react';
 import { speciesList } from '../data/species';
+import { getPlaceholderImage } from '../utils/imageUtils';
 
 export function AnimalDetail() {
   const { id } = useParams();
@@ -252,9 +253,9 @@ export function AnimalDetail() {
                <div style={{ border: '1px solid var(--border-light)', minHeight: '150px', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.2)', overflow: 'hidden' }}>
                   {animal.photoUrl || (animal.commonName || animal.scientificName) ? (
                     <img 
-                      src={animal.photoUrl || `https://images.unsplash.com/photo-1549480017-d76466a4b7e8?auto=format&fit=crop&w=600&q=80&sig=${encodeURIComponent(animal.commonName || animal.scientificName || 'reptile')}`} 
+                      src={animal.photoUrl || (getPlaceholderImage(animal).replace('600', '1200'))} 
                       alt="Preview" 
-                      style={{ width: '100%', height: '250px', objectFit: 'cover' }} 
+                      style={{ width: '100%', height: '350px', objectFit: 'cover' }} 
                       onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1549480017-d76466a4b7e8'}
                     />
                   ) : (
