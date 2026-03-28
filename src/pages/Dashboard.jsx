@@ -3,6 +3,7 @@ import { calculateDailyCost, formatCurrency } from '../utils/costCalculator';
 import { Zap, Home, Activity, TrendingUp } from 'lucide-react';
 import { Snake } from '../components/icons/Snake';
 import { useNavigate } from 'react-router-dom';
+import { speciesList } from '../data/species';
 
 export function Dashboard() {
   const { animals, terrariums, equipments, settings } = useAppContext();
@@ -13,6 +14,13 @@ export function Dashboard() {
   const allEvents = animals.flatMap(a => 
     (a.history || []).map(event => ({ ...event, animalName: a.commonName || 'Inconnu', animalId: a.id }))
   ).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6);
+
+  const familyDistribution = animals.reduce((acc, curr) => {
+    const speciesData = speciesList.find(s => s.scientific === curr.scientificName || s.common === curr.commonName);
+    const family = speciesData?.family || 'Autres / Inconnus';
+    acc[family] = (acc[family] || 0) + 1;
+    return acc;
+  }, {});
 
   return (
     <div className="animate-fade-in">
@@ -68,17 +76,14 @@ export function Dashboard() {
 
       <div className="glass-panel" style={{ marginBottom: '4rem', padding: '2.5rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.5rem', marginBottom: '2rem' }}>
-          <Activity size={24} color="var(--primary)" /> État de la collection (Focus Espèces)
+          <Activity size={24} color="var(--primary)" /> État de la collection (Par Famille)
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1.5rem' }}>
-          {Object.entries(animals.reduce((acc, curr) => {
-            const species = curr.commonName || 'Inconnu';
-            acc[species] = (acc[species] || 0) + 1;
-            return acc;
-          }, {})).sort((a,b) => b[1] - a[1]).map(([species, count]) => (
-            <div key={species} style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-light)', textAlign: 'center' }}>
-               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>{species}</div>
-               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: species.toLowerCase().includes('python') ? 'var(--secondary)' : (species.toLowerCase().includes('gecko') ? 'var(--primary)' : '#fff') }}>{count}</div>
+          {Object.entries(familyDistribution).sort((a,b) => b[1] - a[1]).map(([family, count]) => (
+            <div key={family} style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-light)', textAlign: 'center' }}>
+               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>{family}</div>
+               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff' }}>{count}</div>
+               <div style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 600 }}>SPECIMENS</div>
             </div>
           ))}
         </div>
