@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { LayoutDashboard, Home, Plug, Settings, Sun, Moon } from "lucide-react";
+import { LayoutDashboard, Home, Plug, Settings, Sun, Moon, Euro } from "lucide-react";
 import { Snake } from "./icons/Snake";
 import { useAppContext } from "../store/AppContext";
 import "./Layout.css";
@@ -10,7 +10,8 @@ export function Layout() {
     { to: "/", icon: <LayoutDashboard size={24} />, label: "Dashboard" },
     { to: "/animals", icon: <Snake size={24} />, label: "Animaux" },
     { to: "/terrariums", icon: <Home size={24} />, label: "Terrariums" },
-    { to: "/equipments", icon: <Plug size={24} />, label: "Matériel" }
+    { to: "/equipments", icon: <Plug size={24} />, label: "Matériel" },
+    { to: "/finances", icon: <Euro size={24} />, label: "Bilan" }
   ];
 
   return (

@@ -72,36 +72,7 @@ export function Dashboard() {
           </div>
         </div>
 
-        <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', borderLeft: '4px solid var(--primary)', padding: '2rem', background: 'var(--primary-glow)', gridColumn: 'span 2' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <h4 style={{ margin: 0, color: 'var(--primary)', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Bilan Financier Global</h4>
-            <div style={{ padding: '0.4rem 0.8rem', background: 'var(--primary)', color: 'var(--text-on-primary)', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 800 }}>
-              VALEUR TOTALE : {(animals.reduce((s, a) => s + (a.salePrice || 0), 0) + terrariums.reduce((s, t) => s + (t.salePrice || 0), 0) + equipments.reduce((s, e) => s + (e.purchasePrice || 0), 0)).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
-             <div>
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Investissement Animaux</p>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800 }}>{animals.reduce((s, a) => s + (a.purchasePrice || 0), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</div>
-             </div>
-             <div>
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Investissement Habitats</p>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800 }}>{terrariums.reduce((s, t) => s + (t.purchasePrice || 0), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</div>
-             </div>
-             <div>
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Investissement Matériel</p>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800 }}>{equipments.reduce((s, e) => s + (e.purchasePrice || 0), 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</div>
-             </div>
-             <div style={{ borderLeft: '1px solid var(--border-light)', paddingLeft: '2rem' }}>
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Plus-value Potentielle (A/T)</p>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--primary)' }}>
-                  { (animals.reduce((s, a) => s + ((a.salePrice || 0) - (a.purchasePrice || 0)), 0) + 
-                     terrariums.reduce((s, t) => s + ((t.salePrice || 0) - (t.purchasePrice || 0)), 0)
-                  ).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
-                </div>
-             </div>
-          </div>
-        </div>
+
 
       </div>
 

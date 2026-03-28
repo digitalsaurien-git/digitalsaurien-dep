@@ -2,8 +2,9 @@
 
 ## [v2.7.0] - 2026-03-28
 ### Ajouté
+- **Page Bilan Dédiée :** Centralisation complète des finances, coûts énergétiques par habitat et projections de PV.
 - **Suivi des Investissements (Habitats) :** Saisie des prix d'achat et de revente pour les terrariums.
-- **Bilan Financier Global :** Breakdown complet incluant investissement Animaux + Habitats + Matériel.
+- **Bilan Financier Global :** Déplacement du bilan complexe du Dashboard vers la page Bilan.
 - **Inputs de Finance (Animaux) :** Ajout des champs de transaction dans l'onglet Entrée.
 - **Icônes Financières :** Intégration de l'icône Euro dans toutes les vues monétaires.
 
