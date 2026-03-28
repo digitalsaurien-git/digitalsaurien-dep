@@ -1,5 +1,18 @@
 # Historique des Versions - ReptileTrack
 
+## [v2.7.0] - 2026-03-28
+### Ajouté
+- **Suivi des Investissements (Habitats) :** Saisie des prix d'achat et de revente pour les terrariums.
+- **Bilan Financier Global :** Breakdown complet incluant investissement Animaux + Habitats + Matériel.
+- **Inputs de Finance (Animaux) :** Ajout des champs de transaction dans l'onglet Entrée.
+- **Icônes Financières :** Intégration de l'icône Euro dans toutes les vues monétaires.
+
+## [v2.6.0] - 2026-03-28
+### Ajouté
+- **Avancées Taxonomiques :** Intégration des notions de Famille et Sous-Famille dans le profil biologique.
+- **Base de données Espèces :** Ajout du *Gastropholis prasina* et auto-complétion taxonomique.
+- **Fiche PDF Officielle :** Inclusion des données biologiques détaillées dans l'export officiel.
+
 ## [v2.5.0] - 2026-03-28
 ### Ajouté
 - **Système de Marques :** Datalist de marques recommandées (Habistat, Exo Terra, etc.) pour le matériel.
