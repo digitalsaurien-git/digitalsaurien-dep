@@ -160,7 +160,7 @@ export function Terrariums() {
                                            eq.type === 'thermostat' ? 'Th.' :
                                            eq.type === 'brumisateur' ? 'Pluie' : '';
                          return (
-                           <li key={eq.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '0.5rem 1rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                           <li key={eq.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--bg-card)', padding: '0.5rem 1rem', borderRadius: '6px', border: '1px solid var(--border-light)' }}>
                              <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>
                                <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem', fontWeight: 500, marginRight: '0.5rem' }}>[{typeLabel}]</span>
                                {eq.brand && <span style={{ color: 'var(--primary)', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', marginRight: '0.5rem' }}>{eq.brand}</span>}

@@ -192,7 +192,7 @@ export function Equipments() {
                             value={eq.name} 
                             placeholder="Ex: Sun Ray 70W"
                             onChange={e => updateEquipment(eq.id, 'name', e.target.value)}
-                            style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid var(--border-light)', fontWeight: 600, fontSize: '0.95rem', color: '#fff', padding: '0.3rem 0.6rem', borderRadius: '4px', flex: 1 }}
+                            style={{ background: 'rgba(0,0,0,0.05)', border: '1px solid var(--border-light)', fontWeight: 600, fontSize: '0.95rem', color: 'var(--text-main)', padding: '0.3rem 0.6rem', borderRadius: '4px', flex: 1 }}
                           />
                         </div>
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>

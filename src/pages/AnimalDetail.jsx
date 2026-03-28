@@ -138,6 +138,9 @@ export function AnimalDetail() {
                    const found = speciesList.find(s => s.common === val);
                    if (found) {
                      updateField('scientificName', found.scientific);
+                     if (found.family) updateField('family', found.family);
+                     if (found.subfamily) updateField('subfamily', found.subfamily);
+                     if (found.category) updateField('category', found.category);
                    }
                  }} 
                />
@@ -159,6 +162,9 @@ export function AnimalDetail() {
                    const found = speciesList.find(s => s.scientific === val);
                    if (found) {
                      updateField('commonName', found.common);
+                     if (found.family) updateField('family', found.family);
+                     if (found.subfamily) updateField('subfamily', found.subfamily);
+                     if (found.category) updateField('category', found.category);
                    }
                  }} 
                  placeholder="Ex: Correlophus ciliatus"
@@ -169,6 +175,25 @@ export function AnimalDetail() {
                    <option key={idx} value={s} />
                  ))}
                </datalist>
+             </div>
+
+             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+               <div style={{ marginBottom: '1.5rem' }}>
+                 <label>Famille</label>
+                 <input 
+                   value={animal.family || ''} 
+                   onChange={e => updateField('family', e.target.value)} 
+                   placeholder="Ex: Lacertidae"
+                 />
+               </div>
+               <div style={{ marginBottom: '1.5rem' }}>
+                 <label>Sous-Famille</label>
+                 <input 
+                   value={animal.subfamily || ''} 
+                   onChange={e => updateField('subfamily', e.target.value)} 
+                   placeholder="Ex: Lacertinae"
+                 />
+               </div>
              </div>
 
              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
@@ -629,6 +654,7 @@ export function AnimalDetail() {
           <tbody>
             <tr><th width="35%">Nom Commun</th><td>{animal.commonName}</td></tr>
             <tr><th>Nom Scientifique</th><td><em>{animal.scientificName || '/'}</em></td></tr>
+            <tr><th>Famille / Sous-famille</th><td>{animal.family || '/'} {animal.subfamily ? `(${animal.subfamily})` : ''}</td></tr>
             <tr><th>Surnom / Code Interne</th><td>{animal.nickname || '/'}</td></tr>
             <tr><th>Sexe</th><td>{animal.sex === 'male' ? 'Mâle' : animal.sex === 'femelle' ? 'Femelle' : 'Indéterminé'}</td></tr>
             <tr><th>Date de Naissance / Éclosion</th><td>{animal.birthDateUnknown ? 'Inconnue' : (animal.birthDate || 'Non renseignée')}</td></tr>

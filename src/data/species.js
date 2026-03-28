@@ -23,8 +23,9 @@ export const speciesList = [
   { common: 'Scinque à langue bleue', scientific: 'Tiliqua scincoides', category: 'Scincidés', family: 'Scincidae' },
   { common: 'Caméléon casqué', scientific: 'Chamaeleo calyptratus', category: 'Caméléonidés', family: 'Chamaeleonidae' },
   { common: 'Caméléon panthère', scientific: 'Furcifer pardalis', category: 'Caméléonidés', family: 'Chamaeleonidae' },
-  { common: 'Lézard ocellé', scientific: 'Timon lepidus', category: 'Lacertidés', family: 'Lacertidae' },
-  { common: 'Lézard vert', scientific: 'Lacerta bilineata', category: 'Lacertidés', family: 'Lacertidae' },
+  { common: 'Lézard ocellé', scientific: 'Timon lepidus', category: 'Lacertidés', family: 'Lacertidae', subfamily: 'Lacertinae' },
+  { common: 'Lézard vert', scientific: 'Lacerta bilineata', category: 'Lacertidés', family: 'Lacertidae', subfamily: 'Lacertinae' },
+  { common: 'Lézard émeraude', scientific: 'Gastropholis prasina', category: 'Lacertidés', family: 'Lacertidae', subfamily: 'Lacertinae' },
 
   // OPHIDIENS (Serpents) - Pythons
   { common: 'Python royal', scientific: 'Python regius', category: 'Pythons', family: 'Pythonidae' },
