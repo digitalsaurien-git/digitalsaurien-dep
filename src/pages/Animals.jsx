@@ -1,20 +1,35 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppContext } from '../store/AppContext';
-import { Plus, Search, Info, ShieldCheck, AlertCircle, ChevronRight, Home } from 'lucide-react';
+import { Plus, Search, Info, ShieldCheck, AlertCircle, ChevronRight, X } from 'lucide-react';
 import { Snake } from '../components/icons/Snake' ;
 import { getPlaceholderImage } from '../utils/imageUtils';
+import { speciesList } from '../data/species';
 
 export function Animals() {
   const { animals, setAnimals } = useAppContext();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
+  const familyFilter = searchParams.get('family');
   
-  const filteredAnimals = animals.filter(a => 
-    a.commonName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    a.scientificName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    a.chipNumber?.includes(searchTerm)
-  );
+  const filteredAnimals = animals.filter(a => {
+    const matchesSearch = (
+      a.commonName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a.scientificName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      a.chipNumber?.includes(searchTerm)
+    );
+
+    if (!familyFilter) return matchesSearch;
+
+    const speciesData = speciesList.find(s => s.scientific === a.scientificName || s.common === a.commonName);
+    return matchesSearch && speciesData?.family === familyFilter;
+  });
+
+  const clearFilters = () => {
+    setSearchParams({});
+    setSearchTerm('');
+  };
 
   const handleQuickAdd = () => {
     const newId = crypto.randomUUID();
@@ -51,15 +66,36 @@ export function Animals() {
       </header>
 
       <div className="glass-panel" style={{ marginBottom: '3rem', padding: '1.25rem 2rem' }}>
-        <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
-          <Search size={22} color="var(--primary)" />
-          <input 
-            type="text" 
-            placeholder="Rechercher par nom, espèce ou numéro de puce..." 
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{ border: 'none', background: 'transparent', padding: 0 }}
-          />
+        <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flex: 1 }}>
+            <Search size={22} color="var(--primary)" />
+            <input 
+              type="text" 
+              placeholder="Rechercher par nom, espèce ou numéro de puce..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ border: 'none', background: 'transparent', padding: 0, width: '100%' }}
+            />
+          </div>
+          {familyFilter && (
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.75rem', 
+              background: 'var(--primary-glow)', 
+              padding: '0.4rem 1rem', 
+              borderRadius: '20px',
+              border: '1.5px solid var(--primary)',
+              color: 'var(--primary)',
+              fontSize: '0.8rem',
+              fontWeight: 700
+            }}>
+              <span>Famille: {familyFilter}</span>
+              <button onClick={clearFilters} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 0 }}>
+                <X size={16} color="var(--primary)" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

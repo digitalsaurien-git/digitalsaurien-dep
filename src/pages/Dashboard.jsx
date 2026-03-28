@@ -80,7 +80,20 @@ export function Dashboard() {
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1.5rem' }}>
           {Object.entries(familyDistribution).sort((a,b) => b[1] - a[1]).map(([family, count]) => (
-            <div key={family} style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-light)', textAlign: 'center' }}>
+            <div 
+              key={family} 
+              onClick={() => navigate(`/animals?family=${encodeURIComponent(family)}`)}
+              className="family-card"
+              style={{ 
+                background: 'rgba(255,255,255,0.03)', 
+                padding: '1.5rem', 
+                borderRadius: '12px', 
+                border: '1px solid var(--border-light)', 
+                textAlign: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>{family}</div>
                <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff' }}>{count}</div>
                <div style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 600 }}>SPECIMENS</div>
