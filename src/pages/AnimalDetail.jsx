@@ -130,9 +130,22 @@ export function AnimalDetail() {
              <div style={{ marginBottom: '1.5rem' }}>
                <label>Nom Commun de l'Animal</label>
                <input 
+                 list="common-list"
                  value={animal.commonName || ''} 
-                 onChange={e => updateField('commonName', e.target.value)} 
+                 onChange={e => {
+                   const val = e.target.value;
+                   updateField('commonName', val);
+                   const found = speciesList.find(s => s.common === val);
+                   if (found) {
+                     updateField('scientificName', found.scientific);
+                   }
+                 }} 
                />
+               <datalist id="common-list">
+                 {[...new Set(speciesList.map(s => s.common))].sort().map((c, idx) => (
+                   <option key={idx} value={c} />
+                 ))}
+               </datalist>
              </div>
 
              <div style={{ marginBottom: '1.5rem' }}>
@@ -140,13 +153,20 @@ export function AnimalDetail() {
                <input 
                  list="species-list"
                  value={animal.scientificName || ''} 
-                 onChange={e => updateField('scientificName', e.target.value)} 
+                 onChange={e => {
+                   const val = e.target.value;
+                   updateField('scientificName', val);
+                   const found = speciesList.find(s => s.scientific === val);
+                   if (found) {
+                     updateField('commonName', found.common);
+                   }
+                 }} 
                  placeholder="Ex: Correlophus ciliatus"
                  style={{ fontStyle: 'italic' }}
                />
                <datalist id="species-list">
-                 {speciesList.map((s, idx) => (
-                   <option key={idx} value={s.label} />
+                 {[...new Set(speciesList.map(s => s.scientific))].sort().map((s, idx) => (
+                   <option key={idx} value={s} />
                  ))}
                </datalist>
              </div>

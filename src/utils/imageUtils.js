@@ -3,7 +3,7 @@ export function getPlaceholderImage(animal) {
   
   const text = `${animal.commonName || ''} ${animal.scientificName || ''}`.toLowerCase();
   
-  let keyword = "reptile";
+  let keyword = "";
   
   if (text.includes("python")) keyword = "python-snake";
   else if (text.includes("boa")) keyword = "boa-constrictor";
@@ -12,10 +12,15 @@ export function getPlaceholderImage(animal) {
     else if (text.includes("crested") || text.includes("ciliatus")) keyword = "crested-gecko";
     else keyword = "gecko";
   }
-  else if (text.includes("couleuvre") || text.includes("corn") || text.includes("guttatus")) keyword = "corn-snake";
   else if (text.includes("pogona") || text.includes("bearded")) keyword = "bearded-dragon";
   else if (text.includes("tortoise") || text.includes("tortue")) keyword = "tortoise";
-  else if (text.includes("snake") || text.includes("serpent")) keyword = "snake";
+  else if (text.includes("couleuvre") || text.includes("corn") || text.includes("guttatus") || text.includes("elaphe")) keyword = "corn-snake";
+  else if (text.includes("serpent") || text.includes("snake") || text.includes("python") || text.includes("boa")) keyword = "snake";
+  else if (text.includes("leachianus") || text.includes("gecko géant")) keyword = "giant-gecko";
+  else if (text.includes("chamaeleo") || text.includes("caméléon")) keyword = "chameleon";
+  else keyword = "reptile"; // Unsplash 'reptile' to avoid 'tiger' fallback
 
-  return `https://images.unsplash.com/photo-1549480017-d76466a4b7e8?auto=format&fit=crop&w=600&q=80&sig=${encodeURIComponent(keyword)}-${animal.id || 'default'}`;
+  // Using a more reliable sig format
+  const sig = encodeURIComponent(keyword + "-" + (animal.id || 'default').substring(0, 5));
+  return `https://images.unsplash.com/photo-1549480017-d76466a4b7e8?auto=format&fit=crop&w=600&q=80&reptile-type=${keyword}&sig=${sig}`;
 }
