@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppContext } from '../store/AppContext';
-import { Plus, Trash2, Home, Info, Wind, Zap, Plug, Link as LinkIcon } from 'lucide-react';
+import { Plus, Trash2, Home, Info, Wind, Zap, Plug, Euro, Link as LinkIcon } from 'lucide-react';
 import { calculateDailyCost, formatCurrency } from '../utils/costCalculator';
 
 const brands = [
@@ -25,6 +25,8 @@ export function Terrariums() {
       name: 'Nouvel Habitat',
       dimensions: '',
       brand: '',
+      purchasePrice: 0,
+      salePrice: 0,
       notes: ''
     }, ...terrariums]);
   };
@@ -138,6 +140,30 @@ export function Terrariums() {
                         value={t.dimensions || ''} 
                         onChange={(e) => updateTerrarium(t.id, 'dimensions', e.target.value)}
                         placeholder="Ex: 45x45x60 cm"
+                        style={{ paddingLeft: '2.75rem' }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label>Prix d'Achat (€)</label>
+                    <div style={{ position: 'relative' }}>
+                      <Euro size={16} style={{ position: 'absolute', left: '1rem', top: '1.1rem', color: 'var(--primary)' }} />
+                      <input 
+                        type="number" 
+                        value={t.purchasePrice || 0} 
+                        onChange={(e) => updateTerrarium(t.id, 'purchasePrice', parseFloat(e.target.value))}
+                        style={{ paddingLeft: '2.75rem' }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label>Prix de Vente (€)</label>
+                    <div style={{ position: 'relative' }}>
+                      <Euro size={16} style={{ position: 'absolute', left: '1rem', top: '1.1rem', color: 'var(--secondary)' }} />
+                      <input 
+                        type="number" 
+                        value={t.salePrice || 0} 
+                        onChange={(e) => updateTerrarium(t.id, 'salePrice', parseFloat(e.target.value))}
                         style={{ paddingLeft: '2.75rem' }}
                       />
                     </div>

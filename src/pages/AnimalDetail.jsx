@@ -448,6 +448,14 @@ export function AnimalDetail() {
                 <label>Provenance (Eleveur / Animalerie)</label>
                 <input value={animal.provenance || ''} onChange={e => updateField('provenance', e.target.value)} placeholder="Nom du contact ou du magasin" />
              </div>
+             <div>
+                <label>Prix d'Achat (€)</label>
+                <input type="number" value={animal.purchasePrice || 0} onChange={e => updateField('purchasePrice', parseFloat(e.target.value))} />
+             </div>
+             <div>
+                <label>Prix de Vente (€)</label>
+                <input type="number" value={animal.salePrice || 0} onChange={e => updateField('salePrice', parseFloat(e.target.value))} />
+             </div>
              <div style={{ gridColumn: '1 / -1' }}>
                 <label>Justificatif d'entrée (N° Bon de Cession / Facture)</label>
                 <input value={animal.entryJustification || ''} onChange={e => updateField('entryJustification', e.target.value)} />
